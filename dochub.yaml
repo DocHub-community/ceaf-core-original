@@ -4,14 +4,14 @@ $package:
     # Краткое название пакета
     name: SEAF
     # Поставщик
-    vendor: Sber
+    vendor: CEAF Team
     # Описание
-    description: Sber Enterprise Architect Framework
+    description: Community Enterprise Architect Framework
     # Версия
-    version: 1.2.7
+    version: 1.0.0
     # Зависимости от других пакетов
     dependencies:
-      dochub: ">=3.9.0"
+      dochub: ">=4.1.0"
 
 imports:
   - functions/root.yaml
