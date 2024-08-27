@@ -1,7 +1,0 @@
-imports:
-
-  - self/self.yaml
-  - parties/parties.yaml
-  - products/products.yaml
-  - processes/processes.yaml
-

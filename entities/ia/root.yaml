@@ -1,4 +1,0 @@
-imports:
-  - business_objects/root.yaml
-  - data_objects/root.yaml
-  - menu/root.yaml

@@ -1,0 +1,3 @@
+imports:
+  - app-ceaf-core/dochub.yaml
+  - mm-discovery/dochub.yaml
