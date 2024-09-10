@@ -12,8 +12,8 @@ $package:
     # Зависимости от других пакетов
     dependencies:
       app-ceaf-core: ">=1.0.0"
-      # ba-ceaf-core: ">=1.0.0"
-      # ia-ceaf-core: ">=1.0.0"
+      ia-ceaf-core: ">=1.0.0"
+      # ba-ceaf-core: ">=1.0.0"      
       # ta-ceaf-core: ">=1.0.0"
 
 imports:  

@@ -5,15 +5,15 @@ mm_discovery.stalker:
     location: Метамодель/Общая метамодель
     order: 10100
     nodes:
-      sweaf:
-        title: SWEAF
-      sweaf.ta:
+      ceaf:
+        title: CEAF
+      ceaf.ta:
         title: Техническая архитектура
-      sweaf.app:
+      ceaf.app:
         title: Прикладная архитектура
-      sweaf.ia:
+      ceaf.ia:
         title: Информационная архитектура
-      sweaf.ba:
+      ceaf.ba:
         title: Бизнес-архитектура
     domains:
       - "**" # Отражаем все домены
@@ -23,8 +23,8 @@ mm_discovery.stalker:
             $result := result;
             $translateId := function($id) {( 
                 $result := $lookup({
-                    "aspects": "sweaf.app.aspects",
-                    "components": "sweaf.app.components"
+                    "aspects": "ceaf.app.aspects",
+                    "components": "ceaf.app.components"
                 }, $id);
                 $result ? $result : $id;
             )};  
@@ -49,44 +49,44 @@ mm_discovery.stalker:
     location: Метамодель/Прикладная архитектура
     order: 10200
     nodes:
-      sweaf:
-        title: SWEAF
-      sweaf.app:
+      ceaf:
+        title: CEAF
+      ceaf.app:
         title: Прикладная архитектура
     domains:
       - aspects
       - components      
-      - sweaf.app.**
+      - ceaf.app.**
   swamp.ta:
     title: Техническая архитектура
     location: Метамодель/Техническая архитектура
     order: 10400
     nodes:
-      sweaf:
-        title: SWEAF
-      sweaf.ta:
+      ceaf:
+        title: CEAF
+      ceaf.ta:
         title: Техническая архитектура
     domains:
-      - sweaf.ta.**
+      - ceaf.ta.**
   swamp.ia:
     title: Информационная архитектура
     location: Метамодель/Информационная архитектура
     order: 10300
     nodes:
-      sweaf:
-        title: SWEAF
-      sweaf.ia:
+      ceaf:
+        title: CEAF
+      ceaf.ia:
         title: Информационная архитектура
     domains:
-      - sweaf.ia.**
+      - ceaf.ia.**
   swamp.ba:
     title: Бизнес-архитектура
     location: Метамодель/Бизнес-архитектура
     order: 10500
     nodes:
-      sweaf:
-        title: SWEAF
-      sweaf.ba:
+      ceaf:
+        title: CEAF
+      ceaf.ba:
         title: Бизнес-архитектура
     domains:
-      - sweaf.ba.**
+      - ceaf.ba.**
