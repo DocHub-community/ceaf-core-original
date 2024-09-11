@@ -2,7 +2,7 @@
 mm_discovery.stalker:
   swamp.overview:
     title: Общая карта
-    location: Метамодель/Общая метамодель
+    location: Исследователь метамодели/Общая метамодель
     order: 10100
     nodes:
       ceaf:
@@ -46,7 +46,7 @@ mm_discovery.stalker:
         )
   swamp.app:
     title: Прикладная архитектура
-    location: Метамодель/Прикладная архитектура
+    location: Исследователь метамодели/Прикладная архитектура
     order: 10200
     nodes:
       ceaf:
@@ -59,7 +59,7 @@ mm_discovery.stalker:
       - ceaf.app.**
   swamp.ta:
     title: Техническая архитектура
-    location: Метамодель/Техническая архитектура
+    location: Исследователь метамодели/Техническая архитектура
     order: 10400
     nodes:
       ceaf:
@@ -70,7 +70,7 @@ mm_discovery.stalker:
       - ceaf.ta.**
   swamp.ia:
     title: Информационная архитектура
-    location: Метамодель/Информационная архитектура
+    location: Исследователь метамодели/Информационная архитектура
     order: 10300
     nodes:
       ceaf:
@@ -81,7 +81,7 @@ mm_discovery.stalker:
       - ceaf.ia.**
   swamp.ba:
     title: Бизнес-архитектура
-    location: Метамодель/Бизнес-архитектура
+    location: Исследователь метамодели/Бизнес-архитектура
     order: 10500
     nodes:
       ceaf:
