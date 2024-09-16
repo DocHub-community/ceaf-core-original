@@ -1,0 +1,5 @@
+docs:
+  ceaf.ta.overview:
+    type: markdown
+    source: ta_overview.md
+    location:  Документация/CEAF/Техническая архитектура

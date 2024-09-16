@@ -1,0 +1,5 @@
+docs:
+  ceaf.ia.overview:
+    type: markdown
+    source: ia_overview.md
+    location:  Документация/CEAF/Информационная архитектура

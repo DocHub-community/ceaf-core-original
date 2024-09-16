@@ -10,11 +10,13 @@ $package:
     # Версия  пакета
     version: 1.0.0
     # Зависимости от других пакетов
-    dependencies:
-      app-ceaf-core: ">=1.0.0"
-      ia-ceaf-core: ">=1.0.0"
+    # dependencies:
+    #   app-ceaf-core: ">=1.0.0"
+    #   ia-ceaf-core: ">=1.0.0"
       # ba-ceaf-core: ">=1.0.0"      
       # ta-ceaf-core: ">=1.0.0"
 
-imports:  
-  - _metamodel_/root.yaml
+imports:
+  - welcome/root.yaml
+  - architecture_ceaf_example/dochub.yaml
+  - ceaf_doc/dochub.yaml

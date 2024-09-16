@@ -1,0 +1,5 @@
+docs:
+  ceaf.ba.overview:
+    type: markdown
+    source: ba_overview.md
+    location:  Документация/CEAF/Бизнес-архитектура

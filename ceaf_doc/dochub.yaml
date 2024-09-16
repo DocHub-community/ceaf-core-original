@@ -1,0 +1,14 @@
+# Метаданные пакета
+$package:
+  ia-ceaf-core: # Идентификатор пакета
+    # Краткое название пакета
+    name: CEAF Doc
+    # Поставщик пакета
+    vendor: CEAF Documentation
+    # Описание пакета
+    description: Документация по CEAF
+    # Версия пакета
+    version: 1.0.0
+
+imports:
+  - metamodel/root.yaml
