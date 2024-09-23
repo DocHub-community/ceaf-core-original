@@ -18,5 +18,5 @@ $package:
 
 imports:
   - welcome/root.yaml
-  - architecture_ceaf_example/dochub.yaml
+  - arch_ceaf_example/dochub.yaml
   - ceaf_doc/dochub.yaml
