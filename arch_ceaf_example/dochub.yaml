@@ -16,4 +16,6 @@
 imports:
   - app/root.yaml
   - ia/root.yaml
-  - ta/root.yaml
+  
+  # Метамодель для управления технической архитектурой не адаптирована под CAEF и поэтому не подключена
+  # - ta/root.yaml
