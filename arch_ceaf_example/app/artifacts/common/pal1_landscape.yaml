@@ -1,0 +1,13 @@
+contexts:   # Контексты представления архитектурных компонентов
+  arch.swamp.common:
+    title: ГК Болото
+    location: Прикладной ландшафт ПА-L1/ГК Болото
+    extra-links: true    
+    uml:      
+      $autor: Валентин Козлов
+      $version: '0.0.1'
+      $moment: 08.10.2023
+    components:
+      - swamp.bu_crocodiles.*
+      - swamp.bu_frogs.*
+      - swamp.bu_hippos.*

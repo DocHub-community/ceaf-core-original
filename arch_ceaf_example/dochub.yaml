@@ -1,0 +1,19 @@
+# Метаданные пакета
+# $package:
+#   architecture_ceaf_example: # Идентификатор пакета
+#     # Краткое название пакета
+#     name: Architecture CEAF Example
+#     # Поставщик пакета
+#     vendor: CEAF Team
+#     # Описание  пакета
+#     description: Пример описания архитектуры по стандартам CEAF
+#     # Версия  пакета
+#     version: 1.0.0
+#     # Зависимости от других пакетов
+#     dependencies:
+#       ceaf-core: ">=1.0.0"
+
+imports:
+  - app/root.yaml
+  - ia/root.yaml
+  - ta/root.yaml

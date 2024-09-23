@@ -1,0 +1,12 @@
+imports:
+# Сервисы БЮ Заводь крокодилов
+  - bu_crocodiles/root.yaml
+
+# Сервисы БЮ Лягушачья заводь
+  - bu_frogs/root.yaml
+
+# Сервисы БЮ Заводь бегемотов
+  - bu_hippos/root.yaml
+
+# Подключаем описание доменов
+  - units.yaml
