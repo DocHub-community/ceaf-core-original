@@ -1,0 +1,33 @@
+# Бланк архитектурного компонента
+entities:
+  ceaf.app.integration_specifications:
+    presentations:
+      blank:
+        title: Карточка спецификации
+        params:
+          type: object
+          properties:
+            ceaf-integration-id:
+              title: Идентификатор спецификации
+              type: string
+          required:
+            - ceaf-int-spec-id
+        type: markdown
+        template: templates/blank.md
+        source: >
+          (
+              $components := components; 
+              $specifications := $."ceaf.app.integration_specifications";
+              $id := $params."ceaf-int-spec-id";
+              $lookup($."ceaf.app.integration_specifications", $id).(
+                  $merge([
+                      { "title": $id },
+                      $,
+                      {
+                          "$id": $id,
+                          "async": async ? "Да" : "Нет",
+                          "encryption": encryption ? "Да" : "Нет"
+                      }
+                  ])
+              )
+          )
