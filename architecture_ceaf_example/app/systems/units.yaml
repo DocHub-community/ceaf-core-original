@@ -1,0 +1,12 @@
+components:
+  swamp:
+    title: Экосистема ГК Болото
+  swamp.bu_crocodiles:    
+    title: Бизнес-юнит Заводь крокодилов
+    entity: bu    
+  swamp.bu_frogs:    
+    title: Бизнес-юнит Лягушачья заводь
+    entity: bu
+  swamp.bu_hippos:    
+    title: Бизнес-юнит Заводь бегемотов
+    entity: bu

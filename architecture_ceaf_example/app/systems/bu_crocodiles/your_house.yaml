@@ -1,0 +1,102 @@
+components:
+  swamp.bu_crocodiles.your_house:
+    title: Твой дом
+    entity: system
+    guid: 1a5ca2e1-75ae-4e94-ab16-2356f26f7cbd
+    system_status: trial
+    dev_model: inhouse
+    short_description: Сервис по продаже домов
+    description: Сервис по продаже домов для жителей болота    
+    application_owner: cr.dyujmovochka
+    budget_holder: cr.papa_karlo
+    architect: cr.duremar
+    critical_level: mission_critical    
+    urls:
+      - id: prod
+        type: server
+        title: Адрес сервера прода
+        url: https://dochub.info/main
+      - id: stage
+        type: server
+        title: Адрес сервера стейджа
+        url: https://dochub.info/main
+    repository: https://github.com/RabotaRu/DocHub
+    technologies: # Используемые технологии
+      - PostgreSQL
+      - Java
+      - Kotlin
+      - Spring
+      - jdk17
+      - RESTful
+    aspects:
+      - pokupka_doma_na_bolote.podbor_doma_na_bolote
+      - pokupka_doma_na_bolote.proverka_chistoty_titula
+      - pokupka_doma_na_bolote.registraciya_sdelki
+    links:
+      - id: swamp.bu_crocodiles.autoforms
+        direction: <--
+        title: Данные жителей болота
+      - id: swamp.bu_crocodiles.credit_calc
+        direction: <--
+        title: Данные расчета
+      - id: swamp.begemot_shokolad
+        direction: <--
+        title: Получение услуги
+    # libraries:
+    business_entities:
+      - bank
+      - chekingaccount
+      - contractor
+      - country
+      - unit
+      - agreementtype
+      - contract
+
+# Описание уровня уровня ПА-L2
+  swamp.bu_crocodiles.your_house.frontend:
+    title: Фронт
+    entity: component
+    repository: https://github.com/RabotaRu/DocHub
+    technologies:  # Используемые технологии
+      - Java
+      - Kotlin
+      - Spring
+      - jdk17
+      - RESTful
+    links:
+      - id: swamp.bu_crocodiles.your_house.backend
+        direction: <-->
+        title: HTTPS
+
+  swamp.bu_crocodiles.your_house.backend:
+    title: Бэкенд
+    entity: component
+    repository: https://github.com/RabotaRu/DocHub
+    technologies:  # Используемые технологии
+      - Java
+      - Kotlin
+      - Spring
+      - jdk17
+      - RESTful
+    links:
+      - id: swamp.bu_crocodiles.your_house.db
+        direction: <-->
+        title: tcp 5432 
+    
+  swamp.bu_crocodiles.your_house.db:
+      title: СУБД
+      entity: database # для СУБД нужно указывать именно database
+      technologies: 
+        - PostgreSQL
+
+contexts:   # Контексты представления архитектурных компонентов
+  swamp.bu_crocodiles.your_house:
+    title: Архитектура AutoSuggest (уровень ПА-L2)
+    location: Детальная архитектуры систем ПА-L2/Твой дом
+    extra-links: true
+    uml:      
+      $autor: Дуремар
+      $version: 0.0.1
+      $moment: 07.10.2023
+    components:
+      - swamp.bu_crocodiles.your_house.*

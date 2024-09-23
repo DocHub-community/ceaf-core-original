@@ -1,0 +1,15 @@
+ceaf.app.libraries:
+  swamp_ui:
+    title: Swamp UI
+    description: >
+      Библиотека со стилями ГК Болото
+    library_type: inhouse
+    control_type: regulated    
+    mentor: fr.vodyanoj
+    maintainers:
+      - cr.duremar
+    repository: https://github.com/rpiontik/DocHubExamples
+    technologies:  # Используемые технологии
+      - Django
+      - Python      
+      - PostgreSQL
