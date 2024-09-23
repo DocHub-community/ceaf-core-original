@@ -1,0 +1,277 @@
+entities:  
+  ceaf.app.libraries:
+    title: Модель управления библиотеками
+    description: >
+      При помощи данной сущности описываются библиотеки
+    schema:
+      type: object
+      patternProperties:
+        "[a-zA-Z0-9_]*(\\.[a-zA-Z0-9_]*)*$":
+          type: object
+          properties:
+            title:
+              title: Название библиотеки
+              type: string
+            description:
+              title: Полное описание библиотек
+              type: string
+            library_type:
+              title: Модель разработки библиотеки
+              enum:
+                - inhouse
+                - external
+            control_type:
+              title: Регламентируемость использования библиотеки
+              enum:
+                - regulated
+                - external
+            mentor:
+              title: Логин сотрудника, определяющего вектор развития и популяризации библиотеки
+              type: string
+            maintainers:
+              title: Логины сотрудников, выполняющих внесение изменений в кодовую базу библиотеки
+              type: array
+              items:
+                type: string
+            repository:
+              title: Ссылка на репозиторий
+              type: string
+            technologies:
+              title: Используемые технологии в библиотеки из справочника технологий
+              type: array
+              items:
+                type: string
+          required:
+            - title
+            - description
+            - library_type
+            - control_type
+            - mentor
+            - repository
+    objects:
+      library:
+        route: "/"
+        title: Библиотека
+        symbol: "do"
+
+
+    menu: >
+      (
+        [
+          {
+            "location": "Архитектура/Прикладная/Библиотеки/Каталог библиотек",
+            "link": "entities/ceaf.app.libraries/libraries_list"
+          },
+          {            
+            "link": "entities/ceaf.app.libraries/libraries_in_systems",
+            "location": "Архитектура/Прикладная/Библиотеки/Список библиотек в системах"
+          }
+        ]
+      )
+
+    presentations: 
+      libraries_list:
+        type: markdown
+        title: Каталог библиотек
+        template: templates/libraries_table.md
+
+      libraries_table_list:
+        type: table
+        title: Таблица библиотек
+        headers:
+          - value: title
+            text: Название
+            sortable: true
+            align: left
+            width: 10%
+            link: link_to_library_entity
+          - value: description
+            text: Описание
+            sortable: true
+            align: left
+          - value: library_type
+            text: Тип библиотеки
+            sortable: true
+            align: left
+          - value: control_type
+            text: Тип управления
+            sortable: true
+            align: left
+          - value: repository_link
+            text: Репозиторий
+            link: repository
+            sortable: true
+            align: left 
+          - value: mentor
+            text: Ментор
+            sortable: true
+            align: left
+          - value: maintainers
+            text: Сопровождающие
+            align: left
+        source: ceaf.app.dataset.libraries_table_list
+      
+      library_card:
+        type: markdown
+        title: Карточка библиотеки
+        params:
+          type: object
+          properties:
+            id:
+              type: string
+          required:
+            - library_id
+        template: templates/library_card.md
+        source: >
+          (
+            $libraries := [$."ceaf.app.libraries".$spread().$merge([$.*, {"library_id": $keys($)}])];
+            $libraries [library_id=$params.library_id];
+          )
+
+      # Получаем список библиотек используемых в системах, все это выводим в таблицу
+      libraries_table_in_systems:
+        type: table
+        title: Таблица библиотек используемых в системах
+        headers:
+          - value: system_title
+            text: Система
+            sortable: true
+            align: left
+            link: link_to_system
+
+          - value: system_libraries
+            text: Фильтр
+            link: link_to_system_libraries
+            align: left            
+
+          - value: title
+            text: Библиотека
+            sortable: true
+            align: left
+            link: link_to_library
+
+          - value: library_id
+            text: ID в DocHub
+            sortable: true
+            align: left
+        source: ceaf.app.dataset.libraries_table_in_systems
+          
+
+      # Выводим список библиотек используемых в системах полученных в запросе выше libraries_table_in_systems
+      libraries_in_systems:
+        type: markdown
+        title: Таблица библиотек используемых в системах в md
+        template: templates/libraries_in_systems.md
+
+      # Наследуемся от таблицы libraries_table_in_systems и делаем фильтр по конкретной системе
+      libraries_table_in_systems.filtered: # Дочерняя таблица
+        type: table
+        title: Таблица библиотек используемых в системах с фильтром
+        params:
+          type: object
+          properties:
+            system_id:
+              type: string
+          required:
+            - system_id
+        headers:
+          - value: system_title
+            text: Система
+            sortable: true
+            align: left
+            link: link_to_system
+
+          - value: title
+            text: Библиотека
+            sortable: true
+            align: left
+            link: link_to_library
+
+          - value: library_id
+            text: ID в DocHub
+            sortable: true
+            align: left
+        origin: ceaf.app.dataset.libraries_table_in_systems # Базовый источник данных
+        source: >
+          (
+              [$[system_id=$params.system_id]]
+          )
+
+      systems_library_used.filtered: # Дочерняя таблица
+        type: table
+        title: Все системы конкретной библиотеки
+        params:
+          type: object
+          properties:
+            library_id:
+              type: string
+          required:
+            - library_id
+        headers:
+          - value: system_title
+            text: Система
+            sortable: true
+            align: left
+            link: link_to_system
+
+          - value: system_id
+            text: ID системы в DocHub
+            sortable: true
+            align: left
+        origin: ceaf.app.dataset.libraries_table_in_systems # Базовый источник данных
+        source: >
+          (
+              [$[library_id=$params.library_id]]
+          )
+
+datasets:
+  ceaf.app.dataset.libraries_table_list:
+    source: >
+      (
+        $manifest := $;
+        $dictionaries := $manifest."ceaf.ia.dictionaries";
+        $accounts := $dictionaries."accounts".parameters;
+        $manifest."ceaf.app.libraries".$spread().($merge([{"library_id" : $keys()[0]}, $.*])).(
+          {
+            "library_id": library_id,
+            "link_to_library_entity": "/entities/ceaf.app.libraries/library_card?library_id=" & library_id,
+            "title": title,
+            "description": description,
+            "library_type": library_type,
+            "control_type": control_type,            
+            "mentor": $get_account(mentor, $accounts).title,
+            "maintainers": $.maintainers.([$get_account($, $accounts).title]),
+            "repository": repository,
+            "repository_link": repository ? "🔗" : ""
+          }
+        );
+      )
+
+  ceaf.app.dataset.libraries_table_in_systems:
+    source: >
+      (
+        $manifest := $;
+        $distinct([$manifest.components.$spread().(
+          $system_id := $keys()[0];
+          $system := $;
+          $system_title := $.*.title;
+          $distinct($system.*.libraries.(
+            $library_id := $string($);
+            $library := $lookup($manifest."ceaf.app.libraries", $library_id);
+            $type($library.title)="string"
+            ? (
+              $libraries := $merge([$library, {"id": $library_id}]);
+              {
+                "library_id": $library_id,                /* ID бизнес-сущности в DocHub */
+                "title": $library.title,
+                "link_to_library": "/entities/ceaf.app.libraries/library_card?library_id=" & $library_id,
+                "system_id": $system_id,
+                "link_to_system": "/architect/components/" & $system_id,
+                "system_title": $system_title,
+                "system_libraries": "Отбор по системе",
+                "link_to_system_libraries": "/entities/ceaf.app.libraries/libraries_table_in_systems.filtered?system_id=" & $system_id
+              }
+              )
+          ));
+        )])^(system_id)
+      )
