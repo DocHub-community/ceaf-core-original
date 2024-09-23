@@ -1,9 +1,0 @@
-[submodule "ceaf_architecture_example"]
-	path = ceaf_architecture_example
-	url = git@github.com:DocHub-community/ceaf_architecture_example.git
-[submodule "architecture_ceaf_example"]
-	path = architecture_ceaf_example
-	url = git@github.com:DocHub-community/architecture_ceaf_example.git
-[submodule "_metamodel_/ia-ceaf-core"]
-	path = _metamodel_/ia-ceaf-core
-	url = git@github.com:DocHub-community/ia-ceaf-core-original.git
