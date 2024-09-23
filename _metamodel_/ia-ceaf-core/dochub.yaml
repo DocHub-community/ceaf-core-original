@@ -1,0 +1,16 @@
+# Метаданные пакета
+# $package:
+#   ia-ceaf-core: # Идентификатор пакета
+#     # Краткое название пакета
+#     name: IA CEAF
+#     # Поставщик пакета
+#     vendor: CEAF Team
+#     # Описание пакета
+#     description: Метамодель для описания информационной архитектуры
+#     # Версия пакета
+#     version: 1.0.0
+
+imports:  
+  - entities/root.yaml
+  - functions/root.yaml
+  - rules/root.yaml

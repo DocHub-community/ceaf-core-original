@@ -1,0 +1,9 @@
+# Правила контроля целостности информационной метамодели
+rules:
+  validators:
+    ceaf:
+      title: DocHub-CEAF 
+    ceaf.metamodel:
+      title: Контроль ядра метамодели CEAF
+    ceaf.metamodel.ia:
+      title: Информационная архитектура
