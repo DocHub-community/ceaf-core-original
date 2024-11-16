@@ -1,0 +1,9 @@
+# Правила контроля целостности метамодели управления изменениями
+rules:
+  validators:
+    ceaf:
+      title: DocHub-CEAF 
+    ceaf.metamodel:
+      title: Контроль ядра метамодели CEAF
+    ceaf.metamodel.change:
+      title: Управление изменениями

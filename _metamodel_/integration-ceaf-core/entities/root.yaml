@@ -1,4 +1,0 @@
-imports:
-  # Пока отключены, так как нужно пересмотреть архитектуру
-  - integrations/root.yaml
-  - specifications/root.yaml

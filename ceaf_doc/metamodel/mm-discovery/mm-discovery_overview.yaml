@@ -1,5 +1,0 @@
-docs:
-  ceaf.mm-discovery.overview:
-    type: markdown
-    source: mm-discovery_overview.md
-    location:  Документация/CEAF/Исследователь метамодели

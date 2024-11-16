@@ -1,9 +1,0 @@
-imports:
-  - base.yaml
-  - tree.yaml
-  - blank.yaml  
-  - summary.yaml
-  - docs.yaml
-  - contexts.yaml
-  - hierarchy.yaml
-  - custom_widgets.yaml

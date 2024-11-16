@@ -1,4 +1,0 @@
-imports:
-  - components.yaml
-  - services.yaml
-  - ta.yaml

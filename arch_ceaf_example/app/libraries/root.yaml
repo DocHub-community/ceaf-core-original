@@ -1,4 +1,0 @@
-imports:  
-  - django_catalog.yaml
-  - sign_django_sdk.yaml
-  - swamp_ui.yaml

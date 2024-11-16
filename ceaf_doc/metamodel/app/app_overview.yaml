@@ -1,5 +1,0 @@
-docs:
-  ceaf.app.overview:
-    type: markdown
-    source: app_overview.md
-    location:  Документация/CEAF/Прикладная архитектура

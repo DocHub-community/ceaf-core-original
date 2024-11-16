@@ -1,7 +1,0 @@
-imports:
-  - aspects/root.yaml
-  - components/root.yaml  
-  - contexts/root.yaml
-  - documents/root.yaml
-  - interactions/root.yaml  
-  - libraries/root.yaml
