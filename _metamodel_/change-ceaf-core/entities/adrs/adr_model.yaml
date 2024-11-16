@@ -1,0 +1,115 @@
+entities:  
+  ceaf.change.adrs:
+    title: Модель управления архитектурными решениями
+    description: >
+      При помощи данной сущности описываются архитектурные решения (architecture decision record)
+    schema:
+      type: object
+      patternProperties:
+        "[a-zA-Z0-9_]*(\\.[a-zA-Z0-9_]*)*$":
+          type: object
+          properties:
+            title:
+              title: Название ADR
+              type: string
+            description:
+              title: Краткое описание рассматриваемого архитектурного решения
+              type: string
+          required:
+            - title
+            - description
+
+    objects:
+      adrs:
+        route: "/"
+        title: ADR
+        symbol: "do"
+
+
+    menu: >
+      (
+          $adrs := $."ceaf.change.adrs";
+          $makeLocation := function($id) {(
+              $arrleft := function($arr ,$count) {
+                  $map($arr, function($v, $i) {
+                  $i <= $count ? $v
+                  })
+              };
+              $domains := $split($id, ".");
+              "Архитектура/ADRs/" & $join($map($domains, function($domain, $index) {(
+                  $lookup($adrs, $join($arrleft($domains, $index), ".")).title
+                  )}), "/");
+          )};
+
+          $append([{
+              "icon": *.icon,
+              "link": "entities/ceaf.change.adrs/adl",
+              "location": "Архитектура/ADRs"
+          }],
+              [$."ceaf.change.adrs".$spread().{
+                  "icon": *.icon,
+                  "link": "entities/ceaf.change.adrs/" & (($.*.presentation) ? $.*.presentation : "adr") & "?id=" & $keys()[0],
+                  "location": $makeLocation($keys()[0]),
+                  "order": *.order
+              }][location]
+          );
+      )
+
+
+    presentations: 
+      adl:
+        type: table
+        # headers:
+        #   - value: adr_id
+        #     text: ID
+        #     sortable: true
+        #     align: left
+        #     width: 10%
+        #     link: link_to_adr
+
+        #   - value: adr_title
+        #     text: Предмет
+        #     sortable: true
+        #     align: left
+        #     width: 40%
+
+        #   - value: adr_status
+        #     text: Статус
+        #     sortable: true
+        #     align: left
+        #     width: 10%
+
+        #   - value: adr_date
+        #     text: Дата решения
+        #     sortable: true
+        #     align: left
+
+        #   - value: adr_decision
+        #     text: Решение
+        #     sortable: true
+        #     align: left
+        #     width: 40%
+
+        # source: >                # JSONata запрос к архитектуре
+        #     ([
+        #       adr.$spread().(
+        #       $.*.{
+        #         "adr_id": id,
+        #         "link_to_adr": "/entities/docs/blank?dh-doc-id=" & doc_link,
+        #         "adr_title": title,
+        #         "adr_status": status,
+        #         "adr_date": date,
+        #         "adr_decision": decision
+        #       })
+        #     ])
+
+
+        # Выводим карточку выбранного справочника
+      adr:
+        type: markdown
+        template: templates/adr_template.md
+        source: >
+            (
+                $adr := [$."ceaf.change.adrs".$spread().$merge([$.*, {"id": $keys($)}])];
+                $adr [id=$params.id];
+            )

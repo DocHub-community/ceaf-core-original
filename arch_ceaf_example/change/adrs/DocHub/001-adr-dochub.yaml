@@ -1,0 +1,7 @@
+# Architecture decision record (ADR)
+ceaf.change.adrs:
+  dochub.adr_001:
+    title: Выбор инструмента управления изменениями DocHub
+    description: >
+      С целью управления изменениями в DocHub необходимо было выбрать инструмент. В рамках анализа было принято решение управлять изменениями при помощи специального документа, который называется Architecture decision record (ADR)
+    order: 1001
