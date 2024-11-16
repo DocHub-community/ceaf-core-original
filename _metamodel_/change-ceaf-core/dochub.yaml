@@ -10,6 +10,8 @@
 #     # Версия пакета
 #     version: 1.0.0
 
-# imports:  
-
+imports:  
+  - entities/root.yaml
+  - functions/root.yaml
+  - rules/root.yaml
   

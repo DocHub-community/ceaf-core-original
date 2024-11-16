@@ -1,4 +1,2 @@
 imports:
-  - app-ceaf-core/dochub.yaml
-  - ia-ceaf-core/dochub.yaml
-  - mm-discovery/dochub.yaml
+  - change-ceaf-core/dochub.yaml

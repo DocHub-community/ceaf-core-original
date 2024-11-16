@@ -20,3 +20,6 @@ imports:
   - welcome/root.yaml
   - arch_ceaf_example/dochub.yaml
   - ceaf_doc/dochub.yaml
+  
+  # Для теста в плагине. Для портала нужно отключать
+  # - /_metamodel_/root.yaml
