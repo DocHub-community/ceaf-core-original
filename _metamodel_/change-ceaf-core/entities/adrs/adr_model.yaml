@@ -59,57 +59,66 @@ entities:
     presentations: 
       adl:
         type: table
-        # headers:
-        #   - value: adr_id
-        #     text: ID
-        #     sortable: true
-        #     align: left
-        #     width: 10%
-        #     link: link_to_adr
+        headers:
+          - value: adr_id
+            text: ID
+            sortable: true
+            align: left
+            width: 10%
+            link: link_to_adr
 
-        #   - value: adr_title
-        #     text: Предмет
-        #     sortable: true
-        #     align: left
-        #     width: 40%
+          - value: title
+            text: Наименование
+            sortable: true
+            align: left
+            width: 40%
+            link: link_to_adr
 
-        #   - value: adr_status
-        #     text: Статус
-        #     sortable: true
-        #     align: left
-        #     width: 10%
+          - value: status
+            text: Статус
+            sortable: true
+            align: left
+            width: 10%
 
-        #   - value: adr_date
-        #     text: Дата решения
-        #     sortable: true
-        #     align: left
+          - value: date
+            text: Дата
+            sortable: true
+            align: left
 
-        #   - value: adr_decision
-        #     text: Решение
-        #     sortable: true
-        #     align: left
-        #     width: 40%
+          - value: decision_level
+            text: Уровень решения
+            sortable: true
+            align: left
 
-        # source: >                # JSONata запрос к архитектуре
-        #     ([
-        #       adr.$spread().(
-        #       $.*.{
-        #         "adr_id": id,
-        #         "link_to_adr": "/entities/docs/blank?dh-doc-id=" & doc_link,
-        #         "adr_title": title,
-        #         "adr_status": status,
-        #         "adr_date": date,
-        #         "adr_decision": decision
-        #       })
-        #     ])
+          - value: doc_autor
+            text: Автор решения
+            sortable: true
+            align: left
 
+        source: >
+          (
+            $adrs := $."ceaf.change.adrs";
+            [$adrs.$spread().(
+              $adr_id:= $keys()[0];
+              $adr:= $.*;
+              {
+                "adr_id": $adr_id,
+                "link_to_adr": "adr?id=" & $adr_id,
+                "title": $adr.title,                
+                "status": $adr.status,
+                "date": $adr.date,
+                "decision_level": $adr.decision_level,
+                "doc_autor": $adr.doc_autor
+              };
+            )];
+          )
 
-        # Выводим карточку выбранного справочника
+      # Выводим карточку adr
       adr:
         type: markdown
         template: templates/adr_template.md
         source: >
-            (
-                $adr := [$."ceaf.change.adrs".$spread().$merge([$.*, {"id": $keys($)}])];
-                $adr [id=$params.id];
-            )
+          (
+              $adr := [$."ceaf.change.adrs".$spread().$merge([$.*, {"id": $keys($)}])];
+              $adr [id=$params.id];
+          )

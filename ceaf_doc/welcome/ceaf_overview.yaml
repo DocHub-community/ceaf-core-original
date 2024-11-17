@@ -1,0 +1,5 @@
+docs:
+  ceaf.overview:
+    type: markdown
+    location: CEAF
+    source: ../../README.md

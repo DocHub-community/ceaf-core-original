@@ -5,11 +5,12 @@ Architecture Decision Record (ADR)
 
 ## Общая информация
 
-* Статус: {{status}}
-* Дата: {{date}}
-* Уровень принятия решения: {{decision_level}}
-* Автор документа: {{doc_autor}}
-* Связь с другими решениями: {{other_adr_links}}
+
+* **Статус:** {{status}}
+* **Дата:** {{date}}
+* **Уровень принятия решения:** {{decision_level}}
+* **Автор документа:** {{doc_autor}}
+* **Связь с другими решениями:** {{other_adr_links}}
     {{#other_adr_links}}
     * {{adr_link}}
     {{/other_adr_links}}
@@ -28,16 +29,24 @@ Architecture Decision Record (ADR)
 
 {{context}}
 
-### Цели и границы изменений
+### Цели
 
-{{goals}}
+{{#goals}}
+1. {{.}}
+{{/goals}}
+
+### Границы изменений
+
+{{#boarders}}
+1. {{.}}
+{{/boarders}}
 
 ## Принятое решение
 
-{{decision_outcome}}
+{{decision_taken}}
 
 ## Последствия
-{{possible_risks}}
+{{consequences}}
 
 ## Рассмотренные варианты
 

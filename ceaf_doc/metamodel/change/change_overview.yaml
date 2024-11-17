@@ -2,4 +2,4 @@ docs:
   ceaf.change.overview:
     type: markdown
     source: change_overview.md
-    location:  Документы/CEAF/Управление изменениями
+    location:  CEAF/Управление изменениями

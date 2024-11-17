@@ -16,8 +16,7 @@ $package:
       # ba-ceaf-core: ">=1.0.0"      
       # ta-ceaf-core: ">=1.0.0"
 
-imports:
-  - welcome/root.yaml
+imports:  
   - arch_ceaf_example/dochub.yaml
   - ceaf_doc/dochub.yaml
   
