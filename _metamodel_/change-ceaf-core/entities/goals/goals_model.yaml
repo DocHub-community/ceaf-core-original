@@ -1,8 +1,8 @@
 entities:  
-  ceaf.change.adrs:
-    title: Модель управления архитектурными решениями
+  ceaf.change.goals:
+    title: Модель управления целями
     description: >
-      При помощи данной сущности описываются архитектурные решения (architecture decision record)
+      Модель управления целями
     schema:
       type: object
       patternProperties:
