@@ -1,0 +1,4 @@
+docs:
+  ceaf.adr.overview:
+    type: markdown
+    source: adr_overview.md

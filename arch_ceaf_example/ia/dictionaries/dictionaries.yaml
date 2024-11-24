@@ -1,0 +1,36 @@
+ceaf.ia.dictionaries:
+  settings:
+    title: Настройки    
+    order: 8000
+  settings.adr:
+    title: ADR
+    order: 8100
+    description: Различные статусы ADR
+  settings.adr.statuses:
+    title: Статусы жизненного цикла ADR
+    order: 8110
+    description: Статусы ADR определяют этапы его жизненного цикла
+    parameters:
+      - name: draft
+        title: Черновик
+        description: Этот статус появляется у ADR в момент его первоначального создания
+      - name: proposed
+        title: Предложен
+        description: Этот статус появляется у ADR в момент его передачи на проверку
+      - name: accepted
+        title: Принят
+        description: Этот статус появляется у ADR когда он был проверен и его корректность была подтверждена
+      - name: rejected
+        title: Отклонён
+        description: Этот статус появляется у ADR когда он был проверен и отклонен по различным причинам
+  settings.adr.decision_level:
+    title: Уровень принятия решения ADR
+    order: 8120
+    description: Уровень принятия решения ADR определяет на каком уровне должно приниматься архитектурное решение. 
+    parameters:
+      - name: product_team
+        title: Уровень продукта/системы
+        description: Если принимаемое решение влияет только на один продукт или систему, то решение принимается на уровне продукта или системы
+      - name: several_teams
+        title: Уровень нескольких продуктов/систем
+        description: Если принимаемое решение затрагивает несколько продуктов или систем, то в процесс согласования ADR необходимо добавить всех на кого это решение будет влиять
