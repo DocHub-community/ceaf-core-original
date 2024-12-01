@@ -60,13 +60,6 @@ entities:
       adl:
         type: table
         headers:
-          - value: adr_id
-            text: ID
-            sortable: true
-            align: left
-            width: 10%
-            link: link_to_adr
-
           - value: title
             text: Наименование
             sortable: true
@@ -85,6 +78,13 @@ entities:
             sortable: true
             align: left
 
+          # - value: adr_id
+          #   text: ID
+          #   sortable: true
+          #   align: left
+          #   width: 10%
+          #   link: link_to_adr
+
           - value: decision_level
             text: Уровень решения
             sortable: true
@@ -97,28 +97,54 @@ entities:
 
         source: >
           (
-            $adrs := $."ceaf.change.adrs";
+            $manifest := $;
+            $dictionaries := $manifest."ceaf.ia.dictionaries";
+            $adrs := $manifest."ceaf.change.adrs";
             [$adrs.$spread().(
               $adr_id:= $keys()[0];
               $adr:= $.*;
+              $adr := $add_dictionary_value($adr.status, "status", $adr, $dictionaries."settings.adr.statuses".parameters);
+              $adr := $add_dictionary_value($adr.decision_level, "decision_level", $adr, $dictionaries."settings.adr.decision_level".parameters);
               {
                 "adr_id": $adr_id,
                 "link_to_adr": "adr?id=" & $adr_id,
                 "title": $adr.title,                
-                "status": $adr.status,
+                "status": $adr.status.title,
                 "date": $adr.date,
-                "decision_level": $adr.decision_level,
-                "doc_autor": $adr.doc_autor
+                "decision_level": $adr.decision_level.title,
+                "doc_autor": $adr.author.name
               };
             )];
           )
 
       adr:
         type: markdown
-        title: Выводим карточку adr
+        title: Выводим карточку ADR
         template: templates/adr_template.md
         source: >
           (
-              $adr := [$."ceaf.change.adrs".$spread().$merge([$.*, {"id": $keys($)}])];
-              $adr [id=$params.id];
+            $adr := $."ceaf.change.adrs".$spread().$merge([$.*, {"id": $keys($)}]);
+            $adr [id=$params.id];
+            
+            /* Добавляем доп параметры для ADR*/
+            $manifest := $;
+            $dictionaries := $manifest."ceaf.ia.dictionaries";
+
+            /* Статусы жизненного цикла*/
+            $adr := $add_dictionary_value($adr.status, "status", $adr, $dictionaries."settings.adr.statuses".parameters);
+
+            /* Уровень принятия решений*/
+            $adr := $add_dictionary_value($adr.decision_level, "decision_level", $adr, $dictionaries."settings.adr.decision_level".parameters);
           )
+
+      business_process:
+        title: Выводим описанные бизнес-процессы
+        # type: bpmnjs
+        source: >
+          (
+            $docs := $.docs.$spread().$merge([$.*, {"id": $keys($)}]);
+            $docs [id=$params.doc_id];
+          )
+        
+        # Для теста
+        # http://localhost:8080/entities/ceaf.change.adrs/business_process?doc_id=dochub.adr_001.created_process

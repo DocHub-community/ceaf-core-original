@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="sid-38422fae-e03e-43a3-bef4-bd33b32041b2" targetNamespace="http://bpmn.io/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="17.6.2">
+  <process id="Process_1" isExecutable="false">
+    <startEvent id="Event_1pmvz4e" name="Появилась задача на изменение DocHub">
+      <outgoing>Flow_1tt9oy4</outgoing>
+    </startEvent>
+    <sequenceFlow id="Flow_1tt9oy4" sourceRef="Event_1pmvz4e" targetRef="Activity_0fgwdf0" />
+    <dataObjectReference id="DataObjectReference_0k3wfwl" name="Требования" dataObjectRef="DataObject_02dzsrv" />
+    <dataObject id="DataObject_02dzsrv" />
+    <manualTask id="Activity_0fgwdf0" name="Сделать анализ">
+      <incoming>Flow_1tt9oy4</incoming>
+      <outgoing>Flow_0cfk3gz</outgoing>
+      <dataOutputAssociation id="DataOutputAssociation_16cii71">
+        <targetRef>DataObjectReference_0k3wfwl</targetRef>
+      </dataOutputAssociation>
+    </manualTask>
+    <sequenceFlow id="Flow_0cfk3gz" sourceRef="Activity_0fgwdf0" targetRef="Activity_0idkieb" />
+    <dataObjectReference id="DataObjectReference_14i83k8" name="ADR" dataObjectRef="DataObject_0zvd40h" />
+    <dataObject id="DataObject_0zvd40h" />
+    <task id="Activity_143gj8p" name="Сделать изменения на основании ADR">
+      <incoming>Flow_0w2i6uq</incoming>
+      <outgoing>Flow_1e0jsf3</outgoing>
+      <property id="Property_0raxm4m" name="__targetRef_placeholder" />
+      <dataInputAssociation id="DataInputAssociation_004vrp8">
+        <sourceRef>DataObjectReference_14i83k8</sourceRef>
+        <targetRef>Property_0raxm4m</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation id="DataOutputAssociation_1lxo07z">
+        <targetRef>DataObjectReference_1wee376</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation id="DataOutputAssociation_1p4pwg3">
+        <targetRef>DataStoreReference_15bq607</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <sequenceFlow id="Flow_0w2i6uq" sourceRef="Activity_0idkieb" targetRef="Activity_143gj8p" />
+    <dataObjectReference id="DataObjectReference_1wee376" name="Изменения метамодели" dataObjectRef="DataObject_0kdgfjt" />
+    <dataObject id="DataObject_0kdgfjt" />
+    <endEvent id="Event_1o5uaee" name="Изменения выполнены">
+      <incoming>Flow_1e0jsf3</incoming>
+    </endEvent>
+    <sequenceFlow id="Flow_1e0jsf3" sourceRef="Activity_143gj8p" targetRef="Event_1o5uaee" />
+    <dataStoreReference id="DataStoreReference_1e0poon" name="DocHub" />
+    <userTask id="Activity_0idkieb" name="Сформировать ADR">
+      <incoming>Flow_0cfk3gz</incoming>
+      <outgoing>Flow_0w2i6uq</outgoing>
+      <dataOutputAssociation id="DataOutputAssociation_0wlfesk">
+        <targetRef>DataObjectReference_14i83k8</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation id="DataOutputAssociation_0azs53v">
+        <targetRef>DataStoreReference_1e0poon</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+    <dataStoreReference id="DataStoreReference_15bq607" name="DocHub" />
+    <textAnnotation id="TextAnnotation_0ll558u">
+      <text>Роль:
+Бизнес-аналитик</text>
+    </textAnnotation>
+    <association id="Association_1ykujcv" associationDirection="None" sourceRef="Activity_0fgwdf0" targetRef="TextAnnotation_0ll558u" />
+    <textAnnotation id="TextAnnotation_1grxkgj">
+      <text>Роль:
+Архитектор</text>
+    </textAnnotation>
+    <association id="Association_1vqsenq" associationDirection="None" sourceRef="Activity_0idkieb" targetRef="TextAnnotation_1grxkgj" />
+    <textAnnotation id="TextAnnotation_0tc64as">
+      <text>Роль:
+Разработчик DocHub</text>
+    </textAnnotation>
+    <association id="Association_1jxuxvi" associationDirection="None" sourceRef="Activity_143gj8p" targetRef="TextAnnotation_0tc64as" />
+  </process>
+  <bpmndi:BPMNDiagram id="BpmnDiagram_1">
+    <bpmndi:BPMNPlane id="BpmnPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="Event_1pmvz4e_di" bpmnElement="Event_1pmvz4e">
+        <dc:Bounds x="152" y="262" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="142" y="305" width="56" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0k3wfwl_di" bpmnElement="DataObjectReference_0k3wfwl">
+        <dc:Bounds x="302" y="145" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="289" y="123" width="61" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qkgyyx_di" bpmnElement="Activity_0fgwdf0">
+        <dc:Bounds x="250" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_14i83k8_di" bpmnElement="DataObjectReference_14i83k8">
+        <dc:Bounds x="492" y="145" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="498" y="123" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_143gj8p_di" bpmnElement="Activity_143gj8p">
+        <dc:Bounds x="640" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1wee376_di" bpmnElement="DataObjectReference_1wee376">
+        <dc:Bounds x="712" y="145" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="698" y="106" width="63" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1o5uaee_di" bpmnElement="Event_1o5uaee">
+        <dc:Bounds x="822" y="262" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="811" y="305" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1e0poon_di" bpmnElement="DataStoreReference_1e0poon">
+        <dc:Bounds x="475" y="365" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="480" y="422" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1fnwzzg_di" bpmnElement="Activity_0idkieb">
+        <dc:Bounds x="450" y="240" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_15bq607_di" bpmnElement="DataStoreReference_15bq607">
+        <dc:Bounds x="675" y="365" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="680" y="422" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0ll558u_di" bpmnElement="TextAnnotation_0ll558u">
+        <dc:Bounds x="140" y="170" width="110" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1grxkgj_di" bpmnElement="TextAnnotation_1grxkgj">
+        <dc:Bounds x="380" y="180" width="100" height="40.98958206176758" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0tc64as_di" bpmnElement="TextAnnotation_0tc64as">
+        <dc:Bounds x="590" y="142" width="130" height="55" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1tt9oy4_di" bpmnElement="Flow_1tt9oy4">
+        <di:waypoint x="188" y="280" />
+        <di:waypoint x="250" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_16cii71_di" bpmnElement="DataOutputAssociation_16cii71">
+        <di:waypoint x="307" y="240" />
+        <di:waypoint x="315" y="195" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cfk3gz_di" bpmnElement="Flow_0cfk3gz">
+        <di:waypoint x="350" y="280" />
+        <di:waypoint x="450" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_004vrp8_di" bpmnElement="DataInputAssociation_004vrp8">
+        <di:waypoint x="528" y="180" />
+        <di:waypoint x="641" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1lxo07z_di" bpmnElement="DataOutputAssociation_1lxo07z">
+        <di:waypoint x="704" y="240" />
+        <di:waypoint x="721" y="195" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1p4pwg3_di" bpmnElement="DataOutputAssociation_1p4pwg3">
+        <di:waypoint x="694" y="320" />
+        <di:waypoint x="698" y="365" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0w2i6uq_di" bpmnElement="Flow_0w2i6uq">
+        <di:waypoint x="550" y="280" />
+        <di:waypoint x="640" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e0jsf3_di" bpmnElement="Flow_1e0jsf3">
+        <di:waypoint x="740" y="280" />
+        <di:waypoint x="822" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0wlfesk_di" bpmnElement="DataOutputAssociation_0wlfesk">
+        <di:waypoint x="505" y="240" />
+        <di:waypoint x="510" y="195" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0azs53v_di" bpmnElement="DataOutputAssociation_0azs53v">
+        <di:waypoint x="500" y="320" />
+        <di:waypoint x="500" y="365" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1ykujcv_di" bpmnElement="Association_1ykujcv">
+        <di:waypoint x="255" y="241" />
+        <di:waypoint x="219" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1vqsenq_di" bpmnElement="Association_1vqsenq">
+        <di:waypoint x="467" y="240" />
+        <di:waypoint x="451" y="221" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1jxuxvi_di" bpmnElement="Association_1jxuxvi">
+        <di:waypoint x="650" y="240" />
+        <di:waypoint x="645" y="197" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

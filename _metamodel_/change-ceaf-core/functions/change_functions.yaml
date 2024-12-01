@@ -1,19 +1,31 @@
 # Пользовательские функции
 functions:
-  add_object_id:
-    title: Добавляет id объекта к данным по объекту
+  add_dictionary_value:
+    title: По переданному значению добавляет значение из справочника
     params:
-      - alias: object_id
+      - alias: value
         type: string
-        title: Идентификатор объекта
+        title: Значение
+        required: true
+      - alias: value_name
+        type: string
+        title: Имя значения
         required: true
       - alias: object
         type: object
-        title: Объект куда нужно добавить идентификатор
-        required: true    
+        title: Объект куда нужно добавить значение из справочника
+        required: true
+      - alias: dict
+        type: array
+        title: Справочник из которого берутся значения
+        required: true
     code: >  
       (
         $object := object;
-        $object_id := object_id;
-        $merge([{"id" : $object_id}, $object]);
+        $dict := dict;
+        $value := value;
+        $value_name := value_name;
+
+        $dict_value := $filter($dict, function ($v) { $v.name=$value });
+        $object := $merge([$object, {""& $value_name &"" : $dict_value}]);
       )
