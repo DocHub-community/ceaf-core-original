@@ -94,10 +94,6 @@
 ![Создаваемые процессы](@entity/ceaf.change.adrs/business_process?doc_id={{created_process.doc_id}})
 
 
-![Создаваемые процессы](@document/dochub.adr_001.created_process)
-
-
-
 ## Архитектура решения
 !!! Я не понял магию.
 Должна создаваться автоматически для защиты решения

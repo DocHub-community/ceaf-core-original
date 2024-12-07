@@ -105,6 +105,6 @@ ceaf.change.adrs:
 
 docs:
   dochub.adr_001.created_process:
-    # location: BPMN/Простой пример
+    location: BPMN/Простой пример
     type: bpmnjs
     source: bpmn_bp/bpmn.xml  

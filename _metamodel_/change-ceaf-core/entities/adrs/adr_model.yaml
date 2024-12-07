@@ -139,11 +139,20 @@ entities:
 
       business_process:
         title: Выводим описанные бизнес-процессы
-        # type: bpmnjs
         source: >
           (
             $docs := $.docs.$spread().$merge([$.*, {"id": $keys($)}]);
             $docs [id=$params.doc_id];
+          )
+        $constructor: >
+          (
+            $doc := $lookup(docs, $params.doc_id);
+            /* Для рендера берем за основу объект документа */
+            $merge([$doc, (
+              {
+                "$base": "/docs/" & $params.doc_id
+              }
+            )])
           )
         
         # Для теста
