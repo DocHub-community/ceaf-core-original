@@ -1,0 +1,125 @@
+@startuml
+
+    [*] --> motive    
+    state "Мотивация" as motive
+    motive : Это то, что заставляет нас меняться
+    motive --> context
+    
+    state "Контекст" as context {
+        actor: bob
+        context: Это то что нас ограничивает и способствует к изменениям
+
+        state "Стимулы \n- это текущее состояние (as-is)" as incentives
+        incentives: Это то что заставляет двигаться стейкхолдеров
+        
+        state "Фактический ландшафт" as landscape
+        landscape: 1. Текущее устройство контекста
+        landscape: 2. Существующие процессы
+
+        state "Зависимости" as dependencies
+        dependencies: 1. Политические/экономические
+        dependencies: 2. Требования регуляторов
+        dependencies: 3. Культурные особенности
+
+        state "Доступные ресурсы" as resources
+        resources: 1. Что мы готовы потратить чтобы достичь цели
+        resources: 2. Когда мы должны достичь цели
+
+        state "Закономерности существующего контекста" as patterns
+        patterns: 1. Почему контекст такой какой он сейчас есть
+        patterns: 2. Традиции и культура принятия решений
+        patterns: 3. Традиции и культура реализации решений
+        patterns: 4. Особенности оценки текущего контекста
+    }
+
+    context --> result
+    state "Ожидаемый результат" as result {        
+
+        state "Потребности" as needs
+        needs: К чему я мотивирован
+        
+        state "Критерии оценки успешности" as success_criteria
+        success_criteria: 1. Когда будет сделано?
+        success_criteria: 2. Сколько будет потрачено?
+        success_criteria: 3. Сколько будет заработано или съэкономлено
+        success_criteria: 4. Какие риски/возможности возникают и какие будут минимизированы или устранены
+
+        state "Предубеждения о верном решении" as prejudices
+        prejudices: 1. Мнение стейкхолдеров о том как должно быть правильно
+        prejudices: 2. Личный опыт и практика
+        prejudices: 3. Индустриальные стандарты и внешняя практика
+
+        state "Требования" as requirements
+        requirements: 1. Что приемлемо или что неприемлемо
+        requirements: 2. Функциональные и нефункциональные
+
+        state "Кто будет делать" as responsible
+        responsible: 1. Своими ресурсами
+        responsible: 2. Ресурсами подрядчика/вендора
+        responsible: 3. Уникальность/массовость решения        
+    }
+    result --> solution
+    state "Архитектурное решение" as solution {        
+
+        state "Назначение ресурсов" as purpose
+        purpose: Какие ресурсы для реализации архитектурного решения необходимы
+        
+        state "План реализации" as plan
+        plan: 1. Этапы реализации и их зависимости
+        plan: 2. График реализации
+        plan: 3. Распределение ресурсов по графику
+        
+
+        state "Критерии приёмки" as acceptance_criteria
+        acceptance_criteria: 1. Оценка реализации потребности
+        acceptance_criteria: 2. Оценка реализации требований (функциональные и нефункциональные)
+        acceptance_criteria: 3. Оценка использования ресурсов
+        acceptance_criteria: 4. Оценка ожидаемых результатов
+
+        state "Обоснование архитектурного решения для стейкхолдеров" as justification
+        justification: 1. Для ключевого стейкхолдера с отражением удовлетворения потребности
+        justification: 2. Для стейкхолдеров с отражением удовлетворения требованиям
+
+        state "Инкремент изменения ландшафта" as increment
+        increment: 1. Изменения в информационных системах
+        increment: 2. Изменения в процесссах
+        increment: 3. Изменения в орг струкутре
+        increment: 4. Т.д.      
+       
+    }
+    solution --> execution
+    state "Исполнение" as execution {        
+
+        state "Контроль" as control
+        control: Утилизации ресурсов для эффективной реализации арх. решения
+        
+        state "Управление изменениями" as change_management
+        change_management: 1. Контроль состоятельности архитектурного решения в условиях состоявшихся изменений
+        change_management: 2. Поддержание рационального контекста в сознании стейкхолдеров        
+        
+
+        state "Управление знаниями и компетенциями" as knowledge_management
+        knowledge_management: 1. Экспертное лидерство
+        knowledge_management: 2. Координация передачи знаний необходимых для реализации арх решений
+        knowledge_management: 3. Наставничество
+        knowledge_management: 4. Личное экспертное развитие
+
+        state "Непосредственное участие в исполнении" as participation
+        participation: 1. Гэмба
+        participation: 2. Участие в создании производственных артефактов
+        participation: 3. Участие в развитии производственных процессов
+
+        state "Управление инженерной культурой" as culture
+        culture: 1. Культура принятия ключевых решений
+        culture: 2. Культура объективности
+        culture: 3. Лидерство       
+    }
+
+    execution --> reflection
+    state "Рефлексия" as reflection { 
+        state "Анализ" as analysis
+        analysis: 1. Успехи и их причины
+        analysis: 2. Неудачи и их причины
+
+    }
+@enduml
