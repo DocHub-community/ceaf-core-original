@@ -1,9 +1,9 @@
 docs:
-  ceaf.adr.overview:
+  ceaf.tdr.overview:
     type: markdown
-    source: adr_overview.md
+    source: tdr_overview.md
 
-  ceaf.adr.scheme.conceptual:
+  ceaf.tdr.scheme.conceptual:
     description: Концептуальная схема управления изменениями    
     type: PlantUML
-    source: adr_structure.puml
+    source: tdr_structure.puml

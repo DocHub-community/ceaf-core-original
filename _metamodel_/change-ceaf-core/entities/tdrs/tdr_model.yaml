@@ -1,0 +1,159 @@
+entities:  
+  ceaf.change.tdrs:
+    title: Модель управления архитектурными решениями
+    description: >
+      При помощи данной сущности описываются архитектурные решения (architecture decision record)
+    schema:
+      type: object
+      patternProperties:
+        "[a-zA-Z0-9_]*(\\.[a-zA-Z0-9_]*)*$":
+          type: object
+          properties:
+            title:
+              title: Название TDR
+              type: string
+            description:
+              title: Краткое описание рассматриваемого архитектурного решения
+              type: string
+          required:
+            - title
+            - description
+
+    objects:
+      tdrs:
+        route: "/"
+        title: TDR
+        symbol: "do"
+
+
+    menu: >
+      (
+          $tdrs := $."ceaf.change.tdrs";
+          $makeLocation := function($id) {(
+              $arrleft := function($arr ,$count) {
+                  $map($arr, function($v, $i) {
+                  $i <= $count ? $v
+                  })
+              };
+              $domains := $split($id, ".");
+              "Архитектура/TDRs/" & $join($map($domains, function($domain, $index) {(
+                  $lookup($tdrs, $join($arrleft($domains, $index), ".")).title
+                  )}), "/");
+          )};
+
+          $append([{
+              "icon": *.icon,
+              "link": "entities/ceaf.change.tdrs/adl",
+              "location": "Архитектура/TDRs"
+          }],
+              [$."ceaf.change.tdrs".$spread().{
+                  "icon": *.icon,
+                  "link": "entities/ceaf.change.tdrs/" & (($.*.presentation) ? $.*.presentation : "adr") & "?id=" & $keys()[0],
+                  "location": $makeLocation($keys()[0]),
+                  "order": *.order
+              }][location]
+          );
+      )
+
+
+    presentations: 
+      adl:
+        type: table
+        headers:
+          - value: title
+            text: Наименование
+            sortable: true
+            align: left
+            width: 40%
+            link: link_to_adr
+
+          - value: status
+            text: Статус
+            sortable: true
+            align: left
+            width: 10%
+
+          - value: date
+            text: Дата
+            sortable: true
+            align: left
+
+          # - value: adr_id
+          #   text: ID
+          #   sortable: true
+          #   align: left
+          #   width: 10%
+          #   link: link_to_adr
+
+          - value: decision_level
+            text: Уровень решения
+            sortable: true
+            align: left
+
+          - value: doc_autor
+            text: Автор решения
+            sortable: true
+            align: left
+
+        source: >
+          (
+            $manifest := $;
+            $dictionaries := $manifest."ceaf.ia.dictionaries";
+            $tdrs := $manifest."ceaf.change.tdrs";
+            [$tdrs.$spread().(
+              $adr_id:= $keys()[0];
+              $adr:= $.*;
+              $adr := $add_dictionary_value($adr.status, "status", $adr, $dictionaries."settings.adr.statuses".parameters);
+              $adr := $add_dictionary_value($adr.decision_level, "decision_level", $adr, $dictionaries."settings.adr.decision_level".parameters);
+              {
+                "adr_id": $adr_id,
+                "link_to_adr": "adr?id=" & $adr_id,
+                "title": $adr.title,                
+                "status": $adr.status.title,
+                "date": $adr.date,
+                "decision_level": $adr.decision_level.title,
+                "doc_autor": $adr.author.name
+              };
+            )];
+          )
+
+      adr:
+        type: markdown
+        title: Выводим карточку TDR
+        template: templates/adr_template.md
+        source: >
+          (
+            $adr := $."ceaf.change.tdrs".$spread().$merge([$.*, {"id": $keys($)}]);
+            $adr [id=$params.id];
+            
+            /* Добавляем доп параметры для TDR*/
+            $manifest := $;
+            $dictionaries := $manifest."ceaf.ia.dictionaries";
+
+            /* Статусы жизненного цикла*/
+            $adr := $add_dictionary_value($adr.status, "status", $adr, $dictionaries."settings.adr.statuses".parameters);
+
+            /* Уровень принятия решений*/
+            $adr := $add_dictionary_value($adr.decision_level, "decision_level", $adr, $dictionaries."settings.adr.decision_level".parameters);
+          )
+
+      business_process:
+        title: Выводим описанные бизнес-процессы
+        source: >
+          (
+            $docs := $.docs.$spread().$merge([$.*, {"id": $keys($)}]);
+            $docs [id=$params.doc_id];
+          )
+        $constructor: >
+          (
+            $doc := $lookup(docs, $params.doc_id);
+            /* Для рендера берем за основу объект документа */
+            $merge([$doc, (
+              {
+                "$base": "/docs/" & $params.doc_id
+              }
+            )])
+          )
+        
+        # Для теста
+        # http://localhost:8080/entities/ceaf.change.tdrs/business_process?doc_id=dochub.adr_001.created_process
