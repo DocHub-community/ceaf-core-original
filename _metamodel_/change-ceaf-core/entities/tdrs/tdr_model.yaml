@@ -120,7 +120,7 @@ entities:
       adr:
         type: markdown
         title: Выводим карточку TDR
-        template: templates/adr_template.md
+        template: templates/tdr_template.md
         source: >
           (
             $adr := $."ceaf.change.tdrs".$spread().$merge([$.*, {"id": $keys($)}]);
