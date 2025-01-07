@@ -107,4 +107,4 @@ docs:
   dochub.tdr_001.created_process:
     location: BPMN/Простой пример
     type: bpmnjs
-    source: bpmn_bp/bpmn.xml  
+    source: bpmn_bp/tdr_process.xml 
