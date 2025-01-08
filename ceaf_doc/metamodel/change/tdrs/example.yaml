@@ -1,0 +1,5 @@
+docs:
+  ceaf.tdr.visualization:
+    location: CEAF/Модель TDR
+    type: tdr
+    source: tdr_model.yaml
