@@ -1,4 +1,2 @@
 imports:
-  - tdr.yaml
-  - tdr_model.yaml
-  - example.yaml
+  - tdr.yaml  
