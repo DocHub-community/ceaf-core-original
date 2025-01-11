@@ -1,0 +1,8 @@
+docs:
+  ceaf.tdr.overview:
+    type: markdown
+    source: tdr_overview.md
+
+  ceaf.tdr.model:
+    type: markdown
+    source: tdr_model.md
